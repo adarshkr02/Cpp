@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 
-class ArrayList {
+template <class X> class ArrayList {
 private:
   struct ControlBlock {
     int capacity;
-    int *arr_ptr;
+    X *arr_ptr;
   };
   ControlBlock *s;
 
@@ -13,16 +13,16 @@ public:
   ArrayList(int capacity) {
     s = new ControlBlock;
     s->capacity = capacity;
-    s->arr_ptr = new int[s->capacity];
+    s->arr_ptr = new X[s->capacity];
   };
 
-  void addElement(int index, int data) {
+  void addElement(int index, X data) {
     if (index >= 0 && index <= s->capacity - 1)
       s->arr_ptr[index] = data;
     else
       cout << "\nArray index is not valid";
   }
-  void viewElement(int index, int &data) {
+  void viewElement(int index, X &data) {
     if (index >= 0 && index <= s->capacity - 1)
       data = s->arr_ptr[index];
     else
@@ -38,7 +38,7 @@ public:
 int main() {
   int data;
 
-  ArrayList list1(4);
+  ArrayList<int> list1(4);
   list1.addElement(0, 32);
   list1.addElement(1, 41);
   list1.addElement(2, 55);
